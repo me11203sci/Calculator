@@ -33,7 +33,7 @@ class Main
       else
       {
         // Inform the user of erroneous input.
-        System.out.println("Invalid input detected. Please, try again.");
+        System.out.println("\nInvalid input detected. Please, try again.");
       }
     }
   }
