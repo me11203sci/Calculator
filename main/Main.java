@@ -1,7 +1,6 @@
-// Package.
-
 // Import dependencies.
 import java.util.Scanner;
+import verification.Verify;
 
 // Class declaration.
 class Main
@@ -26,7 +25,7 @@ class Main
       _userInput = _scanner.nextLine();
 
       // Check for valid user input.
-      if(true)
+      if(checkIfValid(_userInput))
       {
         // Print out result.
         System.out.println("\n  = " + _userInput);
