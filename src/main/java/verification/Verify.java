@@ -2,6 +2,8 @@
 package verification;
 
 // Import dependencies.
+import java.util.HashMap;
+import java.util.Stack;
 
 // Class declaration.
 public class Verify
@@ -16,33 +18,98 @@ public class Verify
   // The "validCharaters" method.
   private static boolean validCharaters(String string)
   {
-    // Check for invalid first character.
-    if(Character.toString(string.charAt(0)).matches(".*[+\\*/)].*"))
-    {
-      // Terminate the function.
-      return false;
-    }
-    // Check for invalid charaters.
-    else if(string.matches(".*[!@#$%&_=QWERTYUIOPqwertyuop{\\[}\\]|\\\\ASDFGHJKLasdfghjkl:;\"\'ZXCVBNMzxcvbnm<,>?].*"))
-    {
-      // Terminate the function.
-      return false;
-    }
-    // Otherwise, return true and terminate the function.
-    return true;
+    // Check for invalid characters and invalid character placement.
+    return !(Character.toString(string.charAt(0)).matches(".*[.+\\*/)].*") || string.matches(".*[!@#$%&_=QWERTYUIOPqwertyuop{\\[}\\]|\\\\ASDFGHJKLasdfghjkl:;\"\'ZXCVBNMzxcvbnm<,>?`~].*"));
   }
 
   // The "validParentheses" method.
   private static boolean validParentheses(String string)
   {
-    // Terminate the function.
-    return true;
+    // Declare local instances.
+    Stack<Character> stack = new Stack<Character>();
+
+    // Begin to loop through "string".
+    for(int i = 0; i < string.length(); i++)
+    {
+      if(Character.toString(string.charAt(i)).matches(".*[()].*"))
+      {
+        // Determine if the current index is a left parethesis.
+        if(string.charAt(i) == '(')
+        {
+          stack.push(string.charAt(i));
+        }
+        // Determine if the current index is a left parethesis.
+        else if(string.charAt(i) == ')' && !stack.empty())
+        {
+          stack.pop();
+        }
+        // Otherwise, return false, as a mismatch was found.
+        else
+        {
+          return false;
+        }
+      }
+    }
+
+    // Check if the stack is empty, if not, as a mismatch was found.
+    return stack.empty();
   }
 
   // The "validSyntax" method.
   private static boolean validSyntax(String string)
   {
-    // Terminate the function.
+    //
     return true;
+  }
+  // The "addDelimiter" method.
+  public static String addDelimiter(String string)
+  {
+    // Delcare local instances.
+    String token;
+    String previousToken;
+    String earlierToken;
+    String result = "";
+
+    // Loop through "string".
+    for(int i = 0; i < string.length(); i++)
+    {
+      // Assign value to "token" for this iteration.
+      token = Character.toString(string.charAt(i));
+
+      // Check that "result" has characters in it.
+      if(result.length() > 0)
+      {
+        previousToken = Character.toString(result.charAt(result.length() - 1));
+        earlierToken = (result.length() > 1)? Character.toString(string.charAt(i - 2)) : "";
+
+        // If the current token is a number of decimal point and the previous token was either a number or a negative (not a minus sign), then append it to "result".
+        if(token.matches(".*[.0123456789].*") && (previousToken.matches(".*[.0123456789].*") || (previousToken.equals("-") && !earlierToken.matches(".*[ 0123456789].*"))))
+        {
+          result = result + token;
+        }
+        // Ignore spaces.
+        else if(token.equals(" "))
+        {
+          continue;
+        }
+        // Otherwise, append a space before "token".
+        else
+        {
+          result = result + " " +token;
+        }
+      }
+      // If the result has no characters in it.
+      else
+      {
+        // Append "token" to "result", but ignore spaces.
+        if(!token.equals(" "))
+        {
+          result = token;
+        }
+      }
+    }
+
+    // Terminate the function.
+    return result;
   }
 }

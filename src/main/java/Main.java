@@ -24,11 +24,17 @@ class Main
       // Open scanner object.
       _userInput = _scanner.nextLine();
 
-      // Check for valid user input.
-      if(Verify.checkIfValid(_userInput))
+      // Check for blank input.
+      if(_userInput.equals(""))
       {
         // Print out result.
-        System.out.println("\n  = " + _userInput);
+        System.out.println("\n  = ");
+      }
+      // Check for valid user input.
+      else if(Verify.checkIfValid(_userInput))
+      {
+        // Print out result.
+        System.out.println("\n  = " + Verify.addDelimiter(_userInput));
       }
       else
       {
