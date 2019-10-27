@@ -19,7 +19,7 @@ public class Verify
   private static boolean validCharaters(String string)
   {
     // Check for invalid characters and invalid character placement.
-    return !(Character.toString(string.charAt(0)).matches(".*[.+\\*/)].*") || string.matches(".*[!@#$%&_=QWERTYUIOPqwertyuop{\\[}\\]|\\\\ASDFGHJKLasdfghjkl:;\"\'ZXCVBNMzxcvbnm<,>?`~].*"));
+    return !(Character.toString(string.charAt(0)).matches(".*[.+\\*/)].*") || Character.toString(string.charAt(string.length() - 1)).matches(".*[.+\\*/(].*") || string.matches(".*[!@#$%&_=QWERTYUIOPqwertyuop{\\[}\\]|\\\\ASDFGHJKLasdfghjkl:;\"\'ZXCVBNMzxcvbnm<,>?`~].*"));
   }
 
   // The "validParentheses" method.
@@ -46,7 +46,7 @@ public class Verify
         // Otherwise, return false, as a mismatch was found.
         else
         {
-          return false;
+            return false;
         }
       }
     }
@@ -58,9 +58,13 @@ public class Verify
   // The "validSyntax" method.
   private static boolean validSyntax(String string)
   {
-    //
-    return true;
+    // Declare local instances.
+    string = removeDelimiter(string);
+
+    // Check for consecutive operators, hanging decimal ponts and empty paretheses.
+    return !(string.matches(".*[-+\\*/^\\.]\\).*") || string.matches(".*[+\\*/^\\.][+\\*/^\\.].*") || string.matches(".*\\(\\).*") || string.matches(".*\\)\\(.*"));
   }
+
   // The "addDelimiter" method.
   public static String addDelimiter(String string)
   {
@@ -107,6 +111,25 @@ public class Verify
           result = token;
         }
       }
+    }
+
+    // Terminate the function.
+    return result;
+  }
+
+  // The "removeDelimiter" method.
+  public static String removeDelimiter(String string)
+  {
+    // Delcare local instances.
+    String result = "";
+
+    // Loop through "string".
+    for(int i = 0; i < string.length(); i++)
+    {
+      if(!(Character.toString(string.charAt(i)).equals(" ")))
+        {
+          result = result + string.charAt(i);
+        }
     }
 
     // Terminate the function.
