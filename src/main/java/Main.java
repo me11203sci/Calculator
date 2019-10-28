@@ -1,4 +1,5 @@
 // Import dependencies.
+import calculation.Calculate;
 import java.util.Scanner;
 import verification.Verify;
 
@@ -34,7 +35,7 @@ class Main
       else if(Verify.checkIfValid(_userInput))
       {
         // Print out result.
-        System.out.println("\n  = " + Verify.addDelimiter(_userInput));
+        System.out.println("\n  = " + Calculate.reversePolishConverter(_userInput));
       }
       else
       {

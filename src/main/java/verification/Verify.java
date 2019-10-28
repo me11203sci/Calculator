@@ -87,7 +87,7 @@ public class Verify
         earlierToken = (result.length() > 1)? Character.toString(string.charAt(i - 2)) : "";
 
         // If the current token is a number of decimal point and the previous token was either a number or a negative (not a minus sign), then append it to "result".
-        if(token.matches(".*[.0123456789].*") && (previousToken.matches(".*[.0123456789].*") || (previousToken.equals("-") && !earlierToken.matches(".*[ 0123456789)].*"))))
+        if(token.matches(".*[.0-9].*") && (previousToken.matches(".*[.0-9].*") || (previousToken.equals("-") && !earlierToken.matches(".*[ 0-9)].*"))))
         {
           result = result + token;
         }
