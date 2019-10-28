@@ -1,7 +1,7 @@
 // Package declaration.
 package calculation;
 
-//
+// Import dependecies.
 import java.util.HashMap;
 import java.util.Stack;
 import verification.Verify;
