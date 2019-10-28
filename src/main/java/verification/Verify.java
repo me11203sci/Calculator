@@ -62,7 +62,7 @@ public class Verify
     string = removeDelimiter(string);
 
     // Check for consecutive operators, hanging decimal ponts and empty paretheses.
-    return !(string.matches(".*[-+\\*/^\\.]\\).*") || string.matches(".*[+\\*/^\\.][+\\*/^\\.].*") || string.matches(".*\\(\\).*") || string.matches(".*\\)\\(.*"));
+    return !(string.matches(".*[-+\\*/^\\.]\\).*") || string.matches(".*[+\\*/^\\.][+\\*/^\\.].*") || string.matches(".*\\(\\).*") || string.matches(".*\\)\\(.*") || string.matches(".*[0-9]\\(.*"));
   }
 
   // The "addDelimiter" method.
