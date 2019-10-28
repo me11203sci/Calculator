@@ -34,8 +34,21 @@ class Main
       // Check for valid user input.
       else if(Verify.checkIfValid(_userInput))
       {
-        // Print out result.
-        System.out.println("\n  = " + Calculate.evaluate(_userInput));
+        try
+        {
+          // Print out result.
+          System.out.println("\n  = " + Calculate.evaluate(_userInput));
+        }
+        catch(ArithmeticException e)
+        {
+          // Inform the user of erroneous input.
+          System.out.println("\nInvalid input detected. Please, try again.");
+        }
+        catch(NumberFormatException e)
+        {
+          // Inform the user of erroneous input.
+          System.out.println("\nInsufficent memory. Please, try again.");
+        }
       }
       else
       {

@@ -2,6 +2,7 @@
 package calculation;
 
 // Import dependecies.
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Stack;
 import verification.Verify;
@@ -25,7 +26,7 @@ public class Calculate
       }
       else if (!result.empty() && token.matches(".*[-+\\*/^].*"))
       {
-        result.push(Double.toString(operate(Double.parseDouble(result.pop()), Double.parseDouble(result.pop()), token)));
+        result.push(operate(Double.parseDouble(result.pop()), Double.parseDouble(result.pop()), token));
       }
     }
 
@@ -114,32 +115,32 @@ public class Calculate
   }
 
   // The "operate" method.
-  private static double operate(Double a, Double b, String c)
+  private static String operate(Double a, Double b, String c)
   {
     // Declare local instacnes.
-    double result;
+    BigDecimal result;
 
     // Apply the appropriate operation.
     switch(c)
     {
       case "+":
-        result = a + b;
+        result = BigDecimal.valueOf(a).add(BigDecimal.valueOf(b));
         break;
       case "-":
-      result = b - a;
+      result = BigDecimal.valueOf(b).subtract(BigDecimal.valueOf(a));
         break;
       case "*":
-        result = a * b;
+        result = BigDecimal.valueOf(a).multiply(BigDecimal.valueOf(b));
         break;
       case "/":
-        result = b / a;
+      result = BigDecimal.valueOf(b).divide(BigDecimal.valueOf(a));
         break;
       default:
-        result = Math.pow(b, a);
-       break;
+        result = BigDecimal.valueOf(Math.pow(b, a));
+        break;
     }
 
     // Terminate the function.
-    return result;
+    return result.toString();
   }
 }
