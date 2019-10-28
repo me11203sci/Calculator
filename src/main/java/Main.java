@@ -35,7 +35,7 @@ class Main
       else if(Verify.checkIfValid(_userInput))
       {
         // Print out result.
-        System.out.println("\n  = " + Calculate.reversePolishConverter(_userInput));
+        System.out.println("\n  = " + Calculate.evaluate(_userInput));
       }
       else
       {
