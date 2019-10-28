@@ -118,7 +118,7 @@ public class Verify
   }
 
   // The "removeDelimiter" method.
-  public static String removeDelimiter(String string)
+  private static String removeDelimiter(String string)
   {
     // Delcare local instances.
     String result = "";

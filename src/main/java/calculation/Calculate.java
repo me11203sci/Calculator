@@ -9,6 +9,30 @@ import verification.Verify;
 // Class declaration.
 public class Calculate
 {
+  // The "evaluate" method.
+  public static String evaluate(String string)
+  {
+    // Declare local instacnes.
+    Stack<String> result = new Stack<String>();
+    String[] tokenStream = reversePolishConverter(string).split("\\s");
+
+    // Loop through "tokenStream".
+    for(String token : tokenStream)
+    {
+      if(token.matches(".*[0-9].*"))
+      {
+        result.push(token);
+      }
+      else if (!result.empty() && token.matches(".*[-+\\*/^].*"))
+      {
+        result.push(Double.toString(operate(Double.parseDouble(result.pop()), Double.parseDouble(result.pop()), token)));
+      }
+    }
+
+    // Return the modified value of "result" and terminate the method.
+    return result.toString().replace('[', '\0').replace(']', '\0');
+  }
+
   // The "reversePolishConverter" method.
   public static String reversePolishConverter(String string)
   {
@@ -87,5 +111,35 @@ public class Calculate
 
     // Check if the presedence of current token is less than or equal to the most recent operand.
     return map.get(a) >= map.get(b);
+  }
+
+  // The "operate" method.
+  private static double operate(Double a, Double b, String c)
+  {
+    // Declare local instacnes.
+    double result;
+
+    // Apply the appropriate operation.
+    switch(c)
+    {
+      case "+":
+        result = a + b;
+        break;
+      case "-":
+      result = b - a;
+        break;
+      case "*":
+        result = a * b;
+        break;
+      case "/":
+        result = b / a;
+        break;
+      default:
+        result = Math.pow(b, a);
+       break;
+    }
+
+    // Terminate the function.
+    return result;
   }
 }
