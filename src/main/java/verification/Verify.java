@@ -61,7 +61,7 @@ public class Verify
     string = removeDelimiter(string);
 
     // Check for consecutive operators, hanging decimal points and empty parentheses.
-    return !(string.matches("(.*[0-9]+\\(.*)|(.*\\)[0-9].*)|(.*[-+\\*\\/^][+\\*\\/^\\)].*)|(.*\\.[0-9]+\\..*)|(.*^0{2,}\\..*)"));
+    return !(string.matches("(.*[0-9]+\\(.*)|(.*\\)[0-9].*)|(.*[-+\\*\\/^][+\\*\\/^\\)].*)|(.*\\.[0-9]+\\..*)|(.*^0{2,}\\..*)|(.*\\(\\).*)"));
   }
 
   // The "addDelimiter" method.
