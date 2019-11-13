@@ -18,7 +18,7 @@ public class Verify
   private static boolean validCharacters(String string)
   {
     // Check for invalid characters and invalid character placement.
-    return !(Character.toString(string.charAt(0)).matches(".*[.+\\*/)].*") || Character.toString(string.charAt(string.length() - 1)).matches(".*[.+\\*/(].*") || string.matches(".*[!@#$%&_=QWERTYUIOPqwertyuop{\\[}\\]|\\\\ASDFGHJKLasdfghjkl:;\"\'ZXCVBNMzxcvbnm<,>?`~].*"));
+    return !(Character.toString(string.charAt(0)).matches(".*[.+\\*/)].*") || Character.toString(string.charAt(string.length() - 1)).matches(".*[-.+\\*/(].*") || string.matches(".*[!@#$%&_=QWERTYUIOPqwertyuop{\\[}\\]|\\\\ASDFGHJKLasdfghjkl:;\"\'ZXCVBNMzxcvbnm<,>?`~].*"));
   }
 
   // The "validParentheses" method.
