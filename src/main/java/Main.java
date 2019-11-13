@@ -47,7 +47,7 @@ class Main
         catch(NumberFormatException e)
         {
           // Inform the user of erroneous input.
-          System.out.println("\nInsufficent memory. Please, try again.");
+          System.out.println("\nInsufficient memory. Please, try again.");
         }
       }
       else

@@ -2,7 +2,6 @@
 package verification;
 
 // Import dependencies.
-import java.util.HashMap;
 import java.util.Stack;
 
 // Class declaration.
@@ -12,11 +11,11 @@ public class Verify
   public static boolean checkIfValid(String input)
   {
     // Evaulte validity and terminate function.
-    return validCharaters(input) && validParentheses(input) && validSyntax(input);
+    return validCharacters(input) && validParentheses(input) && validSyntax(input);
   }
 
-  // The "validCharaters" method.
-  private static boolean validCharaters(String string)
+  // The "validCharacters" method.
+  private static boolean validCharacters(String string)
   {
     // Check for invalid characters and invalid character placement.
     return !(Character.toString(string.charAt(0)).matches(".*[.+\\*/)].*") || Character.toString(string.charAt(string.length() - 1)).matches(".*[.+\\*/(].*") || string.matches(".*[!@#$%&_=QWERTYUIOPqwertyuop{\\[}\\]|\\\\ASDFGHJKLasdfghjkl:;\"\'ZXCVBNMzxcvbnm<,>?`~].*"));
@@ -61,8 +60,8 @@ public class Verify
     // Declare local instances.
     string = removeDelimiter(string);
 
-    // Check for consecutive operators, hanging decimal ponts and empty paretheses.
-    return !(string.matches(".*[-+\\*/^\\.]\\).*") || string.matches(".*[+\\*/^\\.][+\\*/^\\.].*") || string.matches(".*\\(\\).*") || string.matches(".*\\)\\(.*") || string.matches(".*[0-9]\\(.*"));
+    // Check for consecutive operators, hanging decimal points and empty parentheses.
+    return !(string.matches("(.*[0-9]+\\(.*)|(.*\\)[0-9].*)|(.*[-+\\*\\/^][+\\*\\/^\\)].*)|(.*\\.[0-9]+\\..*)|(.*^0{2,}\\..*)"));
   }
 
   // The "addDelimiter" method.

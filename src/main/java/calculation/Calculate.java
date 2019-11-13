@@ -1,7 +1,7 @@
 // Package declaration.
 package calculation;
 
-// Import dependecies.
+// Import dependencies.
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Stack;
@@ -13,7 +13,7 @@ public class Calculate
   // The "evaluate" method.
   public static String evaluate(String string)
   {
-    // Declare local instacnes.
+    // Declare local instances.
     Stack<String> result = new Stack<String>();
     String[] tokenStream = reversePolishConverter(string).split("\\s");
 
@@ -59,25 +59,25 @@ public class Calculate
           {
             operators.push(token);
           }
-          // Otherwise, pop operators into the result until all higher presedence operators are in the result.
+          // Otherwise, pop operators into the result until all higher precedence operators are in the result.
           else
           {
-            while(!operators.empty() && greaterPresedence(operators.peek(), token))
+            while(!operators.empty() && greaterPrecedence(operators.peek(), token))
             {
               result = result + " " + operators.pop();
             }
             operators.push(token);
           }
         }
-        // Check if current token is a left parethesis.
+        // Check if current token is a left parenthesis.
         else if(token.equals("("))
         {
           operators.push(token);
         }
-        // Otherwise, the token is a right parethesis.
+        // Otherwise, the token is a right parenthesis.
         else
         {
-          // Pop operators into the result until the next left parethesis.
+          // Pop operators into the result until the next left parenthesis.
           while(!operators.peek().equals("("))
           {
             result = result + " " + operators.pop();
@@ -96,8 +96,8 @@ public class Calculate
     return result;
   }
 
-  // The "greaterPresedence" method.
-  private static boolean greaterPresedence(String a, String b)
+  // The "greaterPrecedence" method.
+  private static boolean greaterPrecedence(String a, String b)
   {
     // Declare local instances.
     HashMap<String, Integer> map = new HashMap<String, Integer>()
@@ -110,14 +110,14 @@ public class Calculate
       put("^", 3);
     }};
 
-    // Check if the presedence of current token is less than or equal to the most recent operand.
+    // Check if the precedence of current token is less than or equal to the most recent operand.
     return map.get(a) >= map.get(b);
   }
 
   // The "operate" method.
   private static String operate(Double a, Double b, String c)
   {
-    // Declare local instacnes.
+    // Declare local instances.
     BigDecimal result;
 
     // Apply the appropriate operation.
