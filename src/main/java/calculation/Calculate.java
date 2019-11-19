@@ -31,7 +31,7 @@ public class Calculate
     }
 
     // Return the modified value of "result" and terminate the method.
-    return result.toString().replace('[', '\0').replace(']', '\0');
+    return result.toString().replace("[", "").replace("]", "");
   }
 
   // The "reversePolishConverter" method.

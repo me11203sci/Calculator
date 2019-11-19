@@ -18,7 +18,7 @@ public class Verify
   private static boolean validCharacters(String string)
   {
     // Check for invalid characters and invalid character placement.
-    return !(Character.toString(string.charAt(0)).matches(".*[.+\\*/)].*") || Character.toString(string.charAt(string.length() - 1)).matches(".*[.+\\*/(].*") || string.matches(".*[!@#$%&_=QWERTYUIOPqwertyuop{\\[}\\]|\\\\ASDFGHJKLasdfghjkl:;\"\'ZXCVBNMzxcvbnm<,>?`~].*"));
+    return !(Character.toString(string.charAt(0)).matches(".*[.+\\*/)].*") || Character.toString(string.charAt(string.length() - 1)).matches(".*[-.+\\*/(].*") || string.matches(".*[!@#$%&_=QWERTYUIOPqwertyuop{\\[}\\]|\\\\ASDFGHJKLasdfghjkl:;\"\'ZXCVBNMzxcvbnm<,>?`~].*"));
   }
 
   // The "validParentheses" method.
@@ -61,7 +61,7 @@ public class Verify
     string = removeDelimiter(string);
 
     // Check for consecutive operators, hanging decimal points and empty parentheses.
-    return !(string.matches("(.*[0-9]+\\(.*)|(.*\\)[0-9].*)|(.*[-+\\*\\/^][+\\*\\/^\\)].*)|(.*\\.[0-9]+\\..*)|(.*^0{2,}\\..*)|(.*\\(\\).*)"));
+    return !(string.matches("(.*[\\d]+\\(.*)|(.*\\)[\\d].*)|(.*[-+\\*\\/^][+\\*\\/^\\)].*)|(.*\\.[\\d]*\\..*)|(.*^0{2,}\\..*)|(.*\\(\\).*)"));
   }
 
   // The "addDelimiter" method.
