@@ -71,7 +71,7 @@ public class Verify
   {
     // Declare and redefine local instances.
     string = string.replaceAll(" ", "");
-    final Pattern pattern = Pattern.compile("(\\-?[\\d\\.]+)|([+-\\/\\^*\\)\\(])", Pattern.MULTILINE);
+    final Pattern pattern = Pattern.compile("((?<=\\-)\\-?[\\d\\.]+)|([+-\\/\\^*\\)\\(])|([\\d\\.]+)", Pattern.MULTILINE);
     final Matcher matcher = pattern.matcher(string);
     final String[] result = matcher.replaceAll("$0 ").split("\\s");
 

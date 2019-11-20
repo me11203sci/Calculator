@@ -133,7 +133,7 @@ public class Calculate
         result = BigDecimal.valueOf(a).multiply(BigDecimal.valueOf(b));
         break;
       case "/":
-      result = BigDecimal.valueOf(b).divide(BigDecimal.valueOf(a));
+      result = (a == 0)? BigDecimal.valueOf(0 / 0): BigDecimal.valueOf(b / a) ;
         break;
       default:
         result = BigDecimal.valueOf(Math.pow(b, a));
