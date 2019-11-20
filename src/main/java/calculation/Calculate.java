@@ -40,7 +40,7 @@ public class Calculate
     // Declare local instances.
     Stack<String> operators = new Stack<String>();
     String result = "";
-    String[] tokenStream = Verify.addDelimiter(string).split("\\s");
+    String[] tokenStream = Verify.tokenize(string);
 
     // Loop through the "tokenStream".
     for(String token : tokenStream)

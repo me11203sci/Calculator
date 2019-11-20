@@ -3,6 +3,8 @@ package verification;
 
 // Import dependencies.
 import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 // Class declaration.
 public class Verify
@@ -58,78 +60,20 @@ public class Verify
   private static boolean validSyntax(String string)
   {
     // Declare local instances.
-    string = removeDelimiter(string);
+    string = string.replaceAll(" ", "");
 
     // Check for consecutive operators, hanging decimal points and empty parentheses.
     return !(string.matches("(.*[\\d]+\\(.*)|(.*\\)[\\d].*)|(.*[-+\\*\\/^][+\\*\\/^\\)].*)|(.*\\.[\\d]*\\..*)|(.*^0{2,}\\..*)|(.*\\(\\).*)"));
   }
 
   // The "addDelimiter" method.
-  public static String addDelimiter(String string)
+  public static String[] tokenize(String string)
   {
-    // Delcare local instances.
-    String token;
-    String previousToken;
-    String earlierToken;
-    String result = "";
-
-    // Loop through "string".
-    for(int i = 0; i < string.length(); i++)
-    {
-      // Assign value to "token" for this iteration.
-      token = Character.toString(string.charAt(i));
-
-      // Check that "result" has characters in it.
-      if(result.length() > 0)
-      {
-        previousToken = Character.toString(result.charAt(result.length() - 1));
-        earlierToken = (result.length() > 1)? Character.toString(string.charAt(i - 2)) : "";
-
-        // If the current token is a number of decimal point and the previous token was either a number or a negative (not a minus sign), then append it to "result".
-        if(token.matches(".*[.0-9].*") && (previousToken.matches(".*[.0-9].*") || (previousToken.equals("-") && !earlierToken.matches(".*[ 0-9)].*"))))
-        {
-          result = result + token;
-        }
-        // Ignore spaces.
-        else if(token.equals(" "))
-        {
-          continue;
-        }
-        // Otherwise, append a space before "token".
-        else
-        {
-          result = result + " " +token;
-        }
-      }
-      // If the result has no characters in it.
-      else
-      {
-        // Append "token" to "result", but ignore spaces.
-        if(!token.equals(" "))
-        {
-          result = token;
-        }
-      }
-    }
-
-    // Terminate the function.
-    return result;
-  }
-
-  // The "removeDelimiter" method.
-  private static String removeDelimiter(String string)
-  {
-    // Delcare local instances.
-    String result = "";
-
-    // Loop through "string".
-    for(int i = 0; i < string.length(); i++)
-    {
-      if(!(Character.toString(string.charAt(i)).equals(" ")))
-        {
-          result = result + string.charAt(i);
-        }
-    }
+    // Declare and redefine local instances.
+    string = string.replaceAll(" ", "");
+    final Pattern pattern = Pattern.compile("(\\-?[\\d\\.]+)|([+-\\/\\^*\\)\\(])", Pattern.MULTILINE);
+    final Matcher matcher = pattern.matcher(string);
+    final String[] result = matcher.replaceAll("$0 ").split("\\s");
 
     // Terminate the function.
     return result;

@@ -3,6 +3,8 @@ import calculation.Calculate;
 import java.util.Scanner;
 import verification.Verify;
 
+import java.util.Arrays;
+
 // Class declaration.
 class Main
 {
