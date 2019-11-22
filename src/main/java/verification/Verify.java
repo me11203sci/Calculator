@@ -66,7 +66,7 @@ public class Verify
     return !(string.matches("(.*[\\d]+\\(.*)|(.*\\)[\\d].*)|(.*[-+\\*\\/^][+\\*\\/^\\)].*)|(.*\\.[\\d]*\\..*)|(.*^0{2,}\\..*)|(.*\\(\\).*)"));
   }
 
-  // The "addDelimiter" method.
+  // The "tokenize" method.
   public static String[] tokenize(String string)
   {
     // Declare and redefine local instances.
